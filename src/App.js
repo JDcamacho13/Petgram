@@ -13,7 +13,6 @@ import { NotFound } from './pages/NotFound';
 
 export const App = () => {
     const { isAuth } = useContext(Context)
-
     return (
         <>
             <GlobalStyles />
