@@ -1,30 +1,41 @@
-import React from 'react';
-import Context from '../Context';
+import React, { useContext } from 'react';
+import { Context } from '../Context';
 import { UserForm } from '../components/UserForm';
 import { RegisterMutation } from '../querys/RegisterMutation';
+import { LoginMutation } from '../querys/LoginMutation';
 
 export const NotRegisteredUser = () => {
-    const { registerMutation, loading, error } = RegisterMutation()
-    return (
-        <Context.Consumer>
-            {
-                ({ activateAuth }) => {
-                    const onSubmit = ({ email, password }) => {
-                        const input = { email, password }
-                        const variables = { input }
-                        registerMutation({ variables })
-                            .then(activateAuth)
-                    }
+    const { registerMutation, loading: loadingReg, error: errorReg } = RegisterMutation();
+    const { loginMutation, loading: loadingLog, error: errorLog } = LoginMutation();
+    const { activateAuth } = useContext(Context);
 
-                    const errorMsg = error && 'El usuario ya existe o hay algun problema'
-                    return (
-                        <>
-                            <UserForm error={errorMsg} disable={loading} tittle='Registrarse' onSubmit={onSubmit} />
-                            <UserForm tittle='Iniciar Sesión' onSubmit={activateAuth} />
-                        </>
-                    )
-                }
-            }
-        </Context.Consumer>
+    const onSubmitRegistro = ({ email, password }) => {
+        const input = { email, password }
+        const variables = { input }
+        registerMutation({ variables })
+            .then(({ data }) => {
+                const { signup } = data
+                activateAuth(signup);
+            })
+    }
+
+    const onSubmitLogin = ({ email, password }) => {
+        const input = { email, password }
+        const variables = { input }
+        loginMutation({ variables })
+            .then(({ data }) => {
+                const { login } = data
+                activateAuth(login);
+            })
+    }
+
+    const errorMsgReg = errorReg && 'El usuario ya existe o hay algun problema';
+    const errorMsgLog = errorLog && 'Datos erroneos o hay algun problema';
+
+    return (
+        <>
+            <UserForm error={errorMsgReg} disable={loadingReg} tittle='Registrarse' onSubmit={onSubmitRegistro} />
+            <UserForm error={errorMsgLog} disable={loadingLog} tittle='Iniciar Sesión' onSubmit={onSubmitLogin} />
+        </>
     )
 }

@@ -1,12 +1,9 @@
 import React from 'react';
 import { PhotoCard } from '../PhotoCard';
 import { Loading } from '../Loading';
+import { Ul } from './styles';
 
-import { GetPhotos } from '../../querys/GetPhotos';
-
-export const ListOfPhotoCards = ({ categoryID }) => {
-    const { loading, error, data } = GetPhotos({ categoryID });
-
+export const ListOfPhotoCards = ({ loading, data, error, name, showLikes = true }) => {
     if (error) {
         return <h2>Error al cargar los datos</h2>
     }
@@ -16,8 +13,8 @@ export const ListOfPhotoCards = ({ categoryID }) => {
     }
 
     return (
-        <ul>
-            {data.photos.map(photo => <PhotoCard key={photo.id} {...photo} />)}
-        </ul>
+        <Ul>
+            {data[name].map(photo => <PhotoCard key={photo.id} {...photo} showLikes={showLikes} />)}
+        </Ul>
     )
 }
