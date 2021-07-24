@@ -1,8 +1,11 @@
 import React from 'react';
+import { Layaout } from '../components/Layout';
 import { PhotoCardWithQuery } from '../container/PhotoCardWithQuery';
 
 export const Detail = ({ detailId }) => {
     return (
-        <PhotoCardWithQuery id={detailId} />
+        <Layaout title={`Fotografía ${detailId}`}>
+            <PhotoCardWithQuery id={detailId} />
+        </Layaout>
     )
 }

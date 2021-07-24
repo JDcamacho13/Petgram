@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GetFavs } from '../querys/GetFavs';
 import { ListOfPhotoCards } from '../components/ListOfPhotoCards';
+import { Layaout } from '../components/Layout';
 
 export const Favs = () => {
     const { loading, error, data } = GetFavs();
@@ -11,6 +12,8 @@ export const Favs = () => {
     }, [data])
 
     return (
-        <ListOfPhotoCards loading={loading} error={error} data={favs} name='favs' showLikes={false} />
+        <Layaout title='Tus Favs' subtitle='Aquí puedes ver tus favoritos'>
+            <ListOfPhotoCards loading={loading} error={error} data={favs} name='favs' showLikes={false} />
+        </Layaout>
     )
 }
