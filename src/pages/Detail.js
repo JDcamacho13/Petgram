@@ -2,7 +2,7 @@ import React from 'react';
 import { Layaout } from '../components/Layout';
 import { PhotoCardWithQuery } from '../container/PhotoCardWithQuery';
 
-export const Detail = ({ detailId }) => {
+export default ({ detailId }) => {
     return (
         <Layaout title={`Fotografía ${detailId}`}>
             <PhotoCardWithQuery id={detailId} />

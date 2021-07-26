@@ -3,7 +3,7 @@ import { GetFavs } from '../querys/GetFavs';
 import { ListOfPhotoCards } from '../components/ListOfPhotoCards';
 import { Layaout } from '../components/Layout';
 
-export const Favs = () => {
+export default () => {
     const { loading, error, data } = GetFavs();
     const [favs, setFavs] = useState({ favs: [] })
 

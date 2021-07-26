@@ -4,7 +4,7 @@ import { ListOfPhotoCards } from '../ListOfPhotoCards';
 import { GetPhotos } from '../../querys/GetPhotos';
 import { Layaout } from '../Layout';
 
-export const HomeMain = ({ categoryId }) => {
+const HomeMainPage = ({ categoryId }) => {
     const { loading, error, data } = GetPhotos({ categoryId });
     return (
         <Layaout title='Tu app de fotos de mascotas' subtitle='Con Petgram puedes encontrar fotos de animales domésticos'>
@@ -13,3 +13,7 @@ export const HomeMain = ({ categoryId }) => {
         </Layaout>
     )
 }
+
+export const HomeMain = React.memo(HomeMainPage, (prevProps, props) => {
+    return prevProps.categoryId === props.categoryId
+})

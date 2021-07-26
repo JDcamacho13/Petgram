@@ -7,6 +7,7 @@
     "build": "webpack",
     "lint": "standard",
     "lint-fix": "standard --fix",
+    "serve:dev": "webpack --mode 'development' && npx serve dist -s ",
     "dev": "webpack serve --open --host 192.168.1.250",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
