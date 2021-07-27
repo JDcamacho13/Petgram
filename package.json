@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/midudev/curso-platzi-react-avanzado#readme",
   "devDependencies": {
+    "cypress": "^8.0.0",
     "html-webpack-plugin": "^5.3.2",
     "standard": "^16.0.3",
     "webpack": "^5.43.0",

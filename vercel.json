@@ -1,6 +1,4 @@
 {
-    "version": 2,
-    "name": "petgram-JDcamacho",
     "builds": [
         {
             "use": "@now/static-build",
@@ -15,6 +13,10 @@
         {
             "src": "(.*).json",
             "dest": "/$1.json"
+        },
+        {
+            "src": "(.*).png",
+            "dest": "/$1.png"
         },
         {
             "src": "/.*",
