@@ -4,6 +4,7 @@ import { useNearScreen } from '../../hooks/useNearScreen';
 import { FavButton } from '../FavButton';
 import { ToggleLikeMutationQuery } from '../../querys/ToggleLikeMutationQuery';
 import { Link } from '@reach/router';
+import propTypes from 'prop-types';
 
 const DEFAULT_IMAGE = 'https://res.cloudinary.com/midudev/image/upload/w_300/q_80/v1560262103/dogs.png';
 
@@ -28,11 +29,19 @@ export const PhotoCard = ({ id, liked, likes = 0, src = DEFAULT_IMAGE, showLikes
                     </Link>
 
                     {
-                        showLikes && <FavButton liked={liked ? 1 : 0} onClick={handleFavClick} likes={likes} />
+                        showLikes && <FavButton liked={liked} onClick={handleFavClick} likes={likes} />
                     }
 
                 </>
             }
         </Article>
     )
+}
+
+PhotoCard.propTypes = {
+    id: propTypes.string.isRequired,
+    liked: propTypes.bool,
+    likes: propTypes.number,
+    src: propTypes.string.isRequired,
+    showLikes: propTypes.bool
 }
